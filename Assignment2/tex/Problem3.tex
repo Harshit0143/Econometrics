@@ -1,0 +1,70 @@
+\section*{Problem 3}
+\noindent Suppose that you have two independent unbiased estimators of the same parameter $a$, say $\hat{a_1}$ and  $\hat{a_2}$ with different standard deviations $\sigma_1$ and $\sigma_2$ . What linear combination of $\hat{a_1}$ and $\hat{a_2}$ is the minimum variance unbiased estimator of $a$? \\ 
+
+\noindent Let $\hat{a}$ be the desired estimator. For some $\lambda, \mu \in \mathbb{R}$ we can write it as:
+\begin{align*}
+\hat{a} = \lambda \hat{a_1} + \mu \hat{a_2}
+\end{align*}
+Since $\hat{a} , \hat{a_1} , \hat{a_2}$ are unbiased, $E[\hat{a}] = E[\hat{a_1}] = E[\hat{a_2}] = a$, we get:
+\begin{align*}
+    E[\hat{a}] = E[\lambda \hat{a_1} + \mu \hat{a_2}] = 0
+\end{align*}
+Using \textbf{Linearity of Expectation}, 
+\begin{align*}
+ \lambda E[\hat{a_1}] + \mu E[\hat{a_1}] = a 
+\implies \lambda a  + \mu a = a
+\end{align*}
+ 
+
+\noindent Assuming $a \neq 0$, we get
+\begin{align*}
+\lambda   + \mu  = 1
+\implies  \mu  = 1 - \lambda
+\end{align*}
+
+\noindent Now, $\hat{a}$ can be written as: 
+
+
+\begin{align*}
+\hat{a} = \lambda \hat{a_1} + (1 - \lambda) \hat{a_2}
+\end{align*} 
+
+\noindent Variance of $\hat{a}$, $\sigma^2$ is given as:
+
+\begin{align*}
+\sigma^2 &= E[(\hat{a} - E[\hat{a}])^2]  \\ 
+&= E[(\hat{a} - a)^2] \\ 
+&= E[(\lambda \hat{a_1} + (1 - \lambda) \hat{a_2} - a)^2] \\ 
+&= E[(\lambda (\hat{a_1} - a) + (1 - \lambda) (\hat{a_2} - a))^2] \\
+&= \lambda^2 E[(\hat{a_1} - a)^2]+ (1 - \lambda)^2 E[(\hat{a_2} - a)^2] + 2 * \lambda (1 - \lambda) E[(\hat{a_1} - a)  (\hat{a_2} - a)]
+\end{align*}
+
+\noindent Now, $E[(\hat{a_1} - a)^2] = \sigma_1$ and $E[(\hat{a_2} - a)^2] = \sigma_2$. \\ 
+Since $\hat{a_1}$ and  $\hat{a_2}$ are \textbf{independent}, they are \textbf{uncorrelated}, hence $E[(\hat{a_1} - a)  (\hat{a_2} - a)] = Cov(\hat{a_1} , \hat{a_2}) = 0$. This gives:
+
+
+\begin{align*}
+\sigma^2 =  \lambda^2 \sigma_1^2 + (1 - \lambda)^2 \sigma_2^2 \\ 
+\end{align*}
+
+Since $\sigma^2$ is a continuous and differentiable function of $\lambda$, to get the minima, we 
+set:
+\begin{align*}
+&\ \ \ \ \ \ \ \ \ \frac{d \sigma^2}{d \lambda} = 0 \\ 
+&\implies \sigma^2 =  \lambda^2 \sigma_1^2 + (1 - \lambda)^2 \sigma_2^2 \\
+&\implies 2 \lambda \sigma_1^2 - 2 (1 - \lambda) \sigma_2^2 = 0 \\ 
+&\implies \lambda = \frac{\sigma_2^2}{\sigma_2^2 + \sigma_1^2}
+\end{align*}
+
+So unbiased estimator $\hat{a}$ minimising variance is, 
+
+\begin{align*}
+\boxed{
+\hat{a} =  \frac{\sigma_2^2}{\sigma_2^2 + \sigma_1^2} 
+\hat{a_1} +   \frac{\sigma_1^2}{\sigma_2^2 + \sigma_1^2} 
+\hat{a_2} 
+}
+\end{align*}
+
+\noindent   Above is a minima, as the expression for $\sigma^2$ is a quadratic function of $\lambda$ with positive leading coefficient ($= \sigma_1^2 + \sigma_2^2 $).
+

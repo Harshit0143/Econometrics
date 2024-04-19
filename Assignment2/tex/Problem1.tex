@@ -1,0 +1,86 @@
+\section*{Problem 1}
+\noindent The $t$-distribution with $r$ degrees of freedom can be defined as the ratio of two independent random variables. The numerator being a $N(0, 1)$ random variable and the denominator being the square-root of a $\chi^2$ random variable divided by its degrees of freedom. The $t$-distribution is a symmetric distribution like the Normal distribution but with fatter tails. As $r \to \infty$ the $t$-distribution approaches the Normal distribution.
+
+
+
+
+
+\begin{enumerate}
+\item 
+\noindent Verify that if $X_1,...,X_n$ are a random samples drawn from a $N(\mu, \sigma^2)$ distribution, then $z =  \frac{\bar{X} - \mu}{\sigma /\sqrt{n}}$ is $N(0,1)$.
+
+\begin{align*}
+\bar{X} &= \frac{X_1 + X_2 .....X_n}{n}\\
+\end{align*}
+\noindent Hence,
+\begin{align*}
+E[\bar{X}] &= E[\frac{X_1 + X_2 .....X_n}{n}]\\
+&= \frac{E[X_1] + E[X_2] .....E[X_n]}{n}\\
+&= \frac{\mu + \mu .....\mu}{n} = \frac{n \mu}{n} = \mu
+\end{align*}
+\noindent So we get,
+\begin{equation}
+E[\bar{X}] = \mu\\
+\end{equation}
+
+Since, $X_i$'s are sampled independently, $Cov(X_i , X_j) = 0 \ \ \forall \ \ i \neq j$ 
+\begin{align*}
+\implies Var[\bar{X}] &= \frac{1}{n^2}Var[X_1 + X_2....X_n]\\
+&= \frac{Var[X_1] + Var[X_2] .....Var[X_n]}{n^2}\\
+&= \frac{\sigma^2 + \sigma^2.....\sigma^2}{n^2} =  \frac{n \sigma^2}{n^2} = 
+\frac{\sigma^2}{n} 
+\end{align*}
+\noindent So we get,
+
+\begin{equation}
+Var[\bar{X}] = \frac{\sigma^2}{n}\\
+\end{equation}
+
+Using $(10)$, $(13)$ and $(14)$, we can say
+\begin{equation}
+\bar{X} \sim  N(\mu , \frac{\sigma^2}{n})\\
+\end{equation}
+Using $(8)$, 
+\begin{align*}
+\bar{X} - \mu \sim  N(0  , \frac{\sigma^2}{n})\\
+\end{align*}
+Using $(9)$, 
+\begin{align*}
+&\frac{\bar{X} - \mu}{\sigma / \sqrt{n}} \sim  N(0  , \frac{1}{(\sigma / \sqrt{n})^2}\frac{\sigma^2}{n})\\
+\implies &\frac{\bar{X} - \mu}{\sigma / \sqrt{n}} \sim N(0,1)
+\end{align*}
+
+
+\item 
+\noindent Use the fact that $\frac{(n - 1)S^2}{\sigma^2} \sim \chi^2_{(n-1)}$ to show that $t = \frac{z}{\sqrt{S^2/\sigma^2}} = \frac{\bar{X} - \mu}{S / \sqrt{n}}$ has a $t$-distribution with $(n - 1)$ degrees of freedom.
+
+\begin{align*}
+\frac{\bar{X} - \mu}{S / \sqrt{n}} &= \frac{\bar{X} - \mu}{(S * \sigma)/(\sqrt{n} * 
+\sigma)}\\
+&= \frac{\bar{X} - \mu}{\sigma/\sqrt{n}}\frac{1}{S/\sigma}\\
+&= \frac{\bar{X} - \mu}{\sigma/\sqrt{n}}\frac{1}{\sqrt{S^2/\sigma^2}}\\
+&= \frac{\bar{X} - \mu}{\sigma/\sqrt{n}}\frac{1}{\frac{\sqrt{(n-1)S^2/\sigma^2}}{\sqrt{(n-1)}}}\\
+\end{align*}
+
+$\frac{\bar{X} - \mu}{\sigma/\sqrt{n}} \sim N(0,1)$ and $\frac{\sqrt{(n-1)S^2/\sigma^2}}{\sqrt{(n-1)}}$ is $\chi^2_{(n-1)}$ divided by square root of it's degree of freedom $\sqrt{n-1}$. Hence, $\frac{\bar{X} - \mu}{S / \sqrt{n}}$ is $t$-distribution, with $(n-1)$ degrees of freedom. 
+
+\item 
+For $n = 16, \bar{x} = 20$ and $s^2 = 4$, construct a $95\%$ confidence interval for $\mu$.
+
+For $95\%$ Confidence Interval, we need $c$
+\begin{align*}
+P(-c < \frac{\bar{X} - \mu}{S / \sqrt{n}} < c) = 0.95
+\end{align*}
+From $t$-table, ($15$ degrees of freedom, $95\%$ confidence) $c = 2.131$
+
+
+\begin{align*}
+\text{Confidence Interval} &= [\bar{x} - \frac{c * s}{\sqrt{n}} , \bar{x} + \frac{c * s}{\sqrt{n}}]\\
+&=[20 - \frac{2.131 * 2}{\sqrt{16}} , 20 + \frac{2.131 * 2}{\sqrt{16}}]\\
+&=[18.9345 ,   21.0655]
+\end{align*}
+
+Hence the $95\%$ Confidence Interval is $[18.9345 , 21.0655]$
+
+
+\end{enumerate}

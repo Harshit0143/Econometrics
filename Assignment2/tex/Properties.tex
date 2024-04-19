@@ -1,0 +1,66 @@
+\section*{Some Properties}
+
+\begin{itemize}
+
+\item 
+\textbf{Linearity of Expectation}: If $X$ and $Y$ are random variables, $a \in \mathbb{R}$ be any constant:
+
+\begin{equation}
+E[X + a] = E[X] + a
+\end{equation}
+\begin{equation}
+E[aX] = aE[X]
+\end{equation}
+\begin{equation}
+E[X + Y] = E[X] + E[Y]
+\end{equation}
+
+\item 
+Variance: If $X$ and $Y$ are random variables, $a \in \mathbb{R}$ be any constant: 
+\begin{equation}
+Var(X + a) = Var(X)
+\end{equation}
+\begin{equation}
+Var(aX) = a^2 * Var(X)
+\end{equation}
+\begin{equation}
+Var(X + Y) = Var(X) + Var(Y) + 2 * Cov(X,Y)
+\end{equation}
+
+\item
+$X$ and $Y$ are \textbf{independent} $\implies X$ and $Y$ are \textbf{uncorrelated}, $Cov(X,Y) = 0$ and:
+\begin{equation}
+Var(X + Y) = Var(X) + Var(Y)
+\end{equation}
+
+
+\item 
+For any constant $a \in \mathbb{R}$:
+\begin{equation}
+X \sim N(\mu , \sigma^2) \implies X - a \sim N(\mu - a , \sigma^2)
+\end{equation}
+
+ \item
+For any constant $a \in \mathbb{R} , a\neq 0$:
+\begin{equation}
+X \sim N(\mu , \sigma^2) \implies aX \sim N(a\mu  , a^2 \sigma^2)
+\end{equation}
+
+ \item
+If $X$ and $Y$ are \textbf{independent} Random Variables, $X \sim N(\mu_1 , \sigma^2_1)$ and $Y \sim N(\mu_2 , \sigma^2_2)$ then:
+\begin{equation}
+X + Y \sim N(\mu_1 + \mu_2 , \sigma^2_1 + \sigma^2_2)
+\end{equation}
+
+
+
+\item
+If $X_1 , X_2 , X_3....X_n$ are Random Samples from a population with mean $\mu$ and variance $\sigma^2$ then  $\forall i \in \{1 , 2,....n\}$ 
+\begin{equation}
+E[X_i] = \mu\\ 
+\end{equation}
+\begin{equation}
+Var(X_i) = \sigma^2
+\end{equation}
+
+\end{itemize}

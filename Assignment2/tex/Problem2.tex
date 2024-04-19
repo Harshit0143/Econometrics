@@ -1,0 +1,130 @@
+\section*{Problem 2}
+
+\noindent Let $\bar{Y}$ denote the sample average from a random sample with mean $\mu$ and variance $\sigma^2$. Consider two alternative estimators of $\mu$: $W_1 = \frac{n - 1}{n}\bar{Y}$ and $W_2 = \frac{\bar{Y}}{2}$.
+\\
+We know,
+\begin{align*}
+E[\bar{Y}] = \mu 
+\end{align*}
+
+\noindent Bias of an estimator (of parameter $\theta$) $W$ is $E[W - \theta] = E[W] - \theta$, denoted as 
+\begin{align*}
+Bias(W , \theta)
+\end{align*}
+
+\begin{enumerate}
+
+\item{
+\noindent Show that $W_1$ and $W_2$ are both biased estimators of $\mu$ and find the biases. What happens to the biases as $n \to \infty$. 
+\begin{align*}
+E[W_1] &= E[\frac{n - 1}{n}\bar{Y}] = \frac{n - 1}{n}E[\bar{Y}] = \frac{n - 1}{n}\mu
+\end{align*}
+\begin{align*}
+\boxed{E[W_1] = \frac{n - 1}{n}\mu}
+\end{align*}
+
+Now,
+\begin{align*}
+Bias(W_1 , \mu) &= E[W_1] -\mu = \frac{n - 1}{n}\mu - \mu = \frac{-\mu}{n}
+\end{align*}
+
+\noindent Since $Bias(W_1 , \mu) \neq 0 \ \ (\mu \neq 0), \ \ W_1$ is a biased estimator of $\mu$. Now.
+
+\begin{align*}
+\lim_{n \to \infty} Bias(W_1 , \mu) = \lim_{n \to \infty} \frac{-\mu}{n} = 0 
+\end{align*}
+
+\noindent Similarly, 
+\begin{align*}
+E[W_2] &= E[\frac{\bar{Y}}{2}] = \frac{E[\bar{Y}]}{2} = \frac{\mu}{2}
+\end{align*}
+\begin{align*}
+\boxed{E[W_2] = \frac{\mu}{2}}
+\end{align*}
+Now,
+\begin{align*}
+Bias(W_2 , \mu) = E[W_2]-\mu = \frac{\mu}{2} - \mu = \frac{-\mu}{2}
+\end{align*}
+\noindent Since $Bias(W_2 , \mu) \neq 0 (\mu \neq 0), \ \ W_2$ is a biased estimator of $\mu$. Now, 
+
+\begin{align*}
+\lim_{n \to \infty} Bias(W_2 , \mu) = \lim_{n \to \infty} \frac{-\mu}{2} = \frac{-\mu}{2} 
+\end{align*}
+
+}
+
+\item
+
+\noindent Find the probability limits of $W_1$ and $W_2$. Which estimator is consistent?\\ \\
+\noindent Denote $W_1$ constructed using $n$ samples as $W_1^n$. Similarly define $W_2^n$.
+\begin{align*}
+\boxed{plim(W_1^n) = \mu}
+\end{align*}
+$plim(W_1) = \mu$ shows $W_1$ is a consistent estimator of $\mu$.
+\begin{align*}
+\boxed{plim(W_2^n)= \frac{\mu}{2}}
+\end{align*}
+
+$plim(W_2) \neq \mu$ shows $W_2$ not a consistent estimator of $\mu$.\newline \newline \newline
+\noindent Proof: For every $\epsilon > 0$
+
+
+\begin{align*}
+P(|W_1^n - \mu| < \epsilon) &= P(|\frac{n - 1}{n}\bar{Y}- \mu| < \epsilon)\\
+    &= P(\mu - \epsilon < \frac{n - 1}{n}\bar{Y} < \mu + \epsilon)\\
+    &= P(\frac{n}{n - 1}(\mu - \epsilon) < \bar{Y} < \frac{n}{n - 1}(\mu + \epsilon))\\
+    &= P(\frac{\mu}{n - 1} - \frac{n}{n - 1} \epsilon) < \bar{Y} - \mu < \frac{\mu}{n - 1} + \frac{n}{n - 1} \epsilon))\\
+     &= P(\frac{\mu}{\sigma}\frac{\sqrt{n}}{n - 1} - \frac{\epsilon}{\sigma}\frac{n\sqrt{n}}{n - 1}  < \frac{\bar{Y} - \mu}{\sigma / \sqrt{n}} < \frac{\mu}{\sigma}\frac{\sqrt{n}}{n - 1} + \frac{\epsilon}{\sigma}\frac{n\sqrt{n}}{n - 1} )
+\end{align*}
+
+Let $l_n = \frac{\mu}{\sigma}\frac{\sqrt{n}}{n - 1} - \frac{\epsilon}{\sigma}\frac{n\sqrt{n}}{n - 1}$ and $r_n = \frac{\mu}{\sigma}\frac{\sqrt{n}}{n - 1} + \frac{\epsilon}{\sigma}\frac{n\sqrt{n}}{n - 1}$\\
+Notice:
+\begin{align*}
+&\lim_{n \to \infty}  \frac{\mu}{\sigma}\frac{\sqrt{n}}{n - 1} = 0\\
+&\lim_{n \to \infty}  \frac{\epsilon}{\sigma}\frac{n\sqrt{n}}{n - 1} = +\infty
+\end{align*}
+So,
+\begin{align*}
+&\lim_{n \to \infty}  l_n = -\infty\\
+&\lim_{n \to \infty}  r_n = +\infty
+\end{align*}
+
+Using the Central Limit Theorem, in the limit of large $n$, 
+\begin{align*}
+\frac{\bar{Y} - \mu}{\sigma / \sqrt{n}} \sim N(0,1)
+\end{align*}
+
+\begin{align*}
+&P(|W_1^n - \mu| < \epsilon) = \Phi(r_n) - \Phi(l_n)\\
+&\implies \lim_{n \to \infty} P(|W_1^n - \mu|) =  \Phi(+\infty) - \Phi(-\infty)
+= 1 - 0 = 1\\
+&\implies \lim_{n \to \infty} P(|W_1^n - \mu| > \epsilon) = 0 
+\end{align*}
+
+Here $\Phi$ is the $CDF$ of $N(0,1)$ \newline \newline
+\begin{align*}
+P(|W_2^n - \frac{\mu}{2}| < \epsilon) &= P(|\frac{\bar{Y}}{2}- \frac{\mu}{2}| < \epsilon)\\
+    &= P( - 2 \epsilon < \bar{Y} - \mu <  2 \epsilon)\\
+    &= P( \frac{- 2 \sqrt{n} \epsilon}{\sigma} < \frac{\bar{Y} - \mu}{\sigma / \sqrt{n}} <  \frac{- 2 \sqrt{n} \epsilon}{\sigma})\\ 
+\end{align*}
+
+Let $l_n = \frac{- 2 \sqrt{n} \epsilon}{\sigma}$ and $r_n = \frac{2 \sqrt{n} \epsilon}{\sigma}$\\
+Notice:
+\begin{align*}
+&\lim_{n \to \infty}  l_n = -\infty\\
+&\lim_{n \to \infty}  r_n = +\infty
+\end{align*}
+\begin{align*}
+&P(|W_2^n - \mu| < \epsilon) = \Phi(r_n) - \Phi(l_n)\\
+&\implies \lim_{n \to \infty} P(|W_2^n - \mu|) =  \Phi(+\infty) - \Phi(-\infty)
+= 1 - 0 = 1\\
+&\implies \lim_{n \to \infty} P(|W_2^n - \mu| > \epsilon) = 0 
+\end{align*}
+
+
+
+
+
+
+\end{enumerate}
+
