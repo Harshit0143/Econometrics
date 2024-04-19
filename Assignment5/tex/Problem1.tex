@@ -1,0 +1,113 @@
+\section{Observing Omitted Variable Bias}
+
+\subsection{$\rho_{x_1 , x_3} > 0$}
+
+\begin{align*}
+    x_1 , x_2 &\sim \mathcal{U}(-1 , 1)\\
+    u , v &\sim \mathcal{N}(0 , 1)
+\end{align*}
+\begin{align*}   
+    x_3 &= 0.60 + 0.95  x_1 + 0.00x_2 + v\\
+    y &= 3.00 +  2.00 x_1 +   1.00 x_2 +  1.50 x_3 + u
+\end{align*}
+
+\begin{table}[htbp]
+    \begin{minipage}[t]{0.4\textwidth}
+        \centering
+        \begin{tabular}{ll}
+            \toprule
+            Variables & $\rho$ \\
+            \midrule
+            $x_1$ $x_2$ & -0.012 \\
+            $x_2$ $x_3$ & 0.001 \\
+            $x_1$ $x_3$ & 0.506 \\
+            \bottomrule
+        \end{tabular}
+        \caption{Correlation coefficients}
+        \label{tab:pos_corr}
+    \end{minipage}
+    \hspace{0.0\textwidth}
+    \begin{minipage}[t]{0.5\textwidth} % Adjusted width
+        \centering
+        \begin{tabular}{ll>{\centering\arraybackslash}p{2cm}>{\centering\arraybackslash}p{2cm}} % Adjusted column widths
+            \toprule
+            \multicolumn{2}{c}{\multirow{2}{*}{True Values}} & \multicolumn{2}{c}{Regressors} \\
+            \cmidrule(lr){3-4}
+             &  & $x_1$ $x_2$ $x_3$ & $x_1$ $x_2$ \\
+            \midrule
+            $\beta_0$ & 3.00 & 3.034 & 3.984 \\
+            $\beta_1$ & 2.00 & 1.911 & 3.278 \\
+            $\beta_2$ & 1.00 & 0.909 & 0.927 \\
+            $\beta_3$ & 1.50 & 1.451 & - \\
+            \bottomrule
+        \end{tabular}
+        \caption{Regression coefficients}
+        \label{tab:pos_data}
+    \end{minipage}
+    \caption{$x_3$ positively correlated with $x_1$}
+\end{table}
+
+
+In table \autoref{tab:pos_corr} the  $\rho _{x_1 , x_3} \approx 0.5$ i.e. positively correlated. Hence, in \autoref{tab:pos_data}, we see when, $x_3$ is not one of the regressors, the coefficient of $x_1$ i.e. $\beta_1$ increases significantly, while $\beta_2$ is almost unchanged, as $\rho_{x_2 , x_3} \approx 0$.
+
+
+
+\subsection{$\rho_{x_1 , x_3} < 0$}
+\begin{align*}
+    x_1 , x_2 &\sim \mathcal{U}(-1 , 1)\\
+    u , v &\sim \mathcal{N}(0 , 1)
+    \end{align*}
+\begin{align*}
+    x_3 &= 0.60 - 0.95  x_1 + 0.00x_2 + v\\
+    y &= 3.00 +  2.00 x_1 +   1.00 x_2 +  1.50 x_3 + u
+\end{align*}
+
+\begin{table}[htbp]
+    \begin{minipage}[t]{0.4\textwidth}
+        \centering
+        \begin{tabular}{ll}
+            \toprule
+            Variables & $\rho$ \\
+            \midrule
+            $x_1$ $x_2$ & -0.012 \\
+            $x_2$ $x_3$ & 0.044 \\
+            $x_1$ $x_3$ & -0.546 \\
+            \bottomrule            
+        \end{tabular}
+        \caption{Correlation coefficients}
+        \label{tab:neg_corr}
+    \end{minipage}
+    \hspace{0.0\textwidth}
+    \begin{minipage}[t]{0.5\textwidth} % Adjusted width
+        \centering
+        \begin{tabular}{ll>{\centering\arraybackslash}p{2cm}>{\centering\arraybackslash}p{2cm}} % Adjusted column widths
+            \toprule
+            \multicolumn{2}{c}{\multirow{2}{*}{True Values}} & \multicolumn{2}{c}{Regressors} \\
+            \cmidrule(lr){3-4}
+             &  & $x_1$ $x_2$ $x_3$ & $x_1$ $x_2$ \\
+            \midrule
+            $\beta_0$ & 3.00 & 2.941 & 3.795 \\
+            $\beta_1$ & 2.00 & 2.080 & 0.406 \\
+            $\beta_2$ & 1.00 & 1.082 & 1.196 \\
+            $\beta_3$ & 1.50 & 1.545 & - \\
+            \bottomrule            
+        \end{tabular}
+        \caption{Regression coefficients}
+        \label{tab:neg_data}
+    \end{minipage}
+    \caption{$x_3$ negatively correlated with $x_1$}
+    \label{tab:neg_all}
+\end{table}
+In table \autoref{tab:neg_corr} the  $\rho _{x_1 , x_3} \approx -0.55$ i.e. negatively correlated. Hence, in \autoref{tab:neg_data}, we see when, $x_3$ is not one of the regressors, the coefficient of $x_1$ i.e. $\beta_1$ decreases significantly, while $\beta_2$ is almost unchanged, as $\rho_{x_2 , x_3} \approx 0$.\\\\
+
+The class quiz problem is analogous to the data discussed in \autoref{tab:neg_all}. We can treat the latent $ability$ as $x_3$, the $log(wage)$ as $y$ and $train$ as $x_1$. It's given that $\rho_{train , x_3} < 0$ as workers with less $ability$ are more likely to be selected. Also $\rho_{log(wage) , ability} > 0 , \rho_{log(wage) , train} > 0$, we can see that NOT using $ability$ as a regressor will decrease $\beta_1$ i.e. underestimate the effect of traning program. 
+
+
+\subsection{Conclusion}
+With some other settings of data generation, I verified,
+\begin{enumerate}
+    \item When $\rho_{x_1 , x_3} > 0$, if $\rho_{y , x_1} , \rho_{y , x_3}$ have the same sign, removing $x_3$ will increase magnitude of $\beta_1$ but if $\rho_{y , x_1} , \rho_{y , x_3}$ have the opposite signs, removing $x_3$ will decrease magnitude of $\beta_1$.
+
+    \item When $\rho_{x_1 , x_3} < 0$, if $\rho_{y , x_1} , \rho_{y , x_3}$ have the same sign, removing $x_3$ will decrease magnitude of $\beta_1$ but if $\rho_{y , x_1} , \rho_{y , x_3}$ have the opposite signs, removing $x_3$ will increase magnitude of $\beta_1$.
+\end{enumerate}
+

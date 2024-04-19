@@ -1,0 +1,117 @@
+\section{Proxy Variables to solve OVB}
+
+\subsection{$E[x_3 | z_3] = E[x_3 | x_1 ,x_2 , z_3]$ is satisfied}
+
+\begin{align*}
+    z_3 &\sim \mathcal{U}(-1 , 1)\\
+    \epsilon_1 , \epsilon_2 , \epsilon_3 , u &\sim \mathcal{N}(0 , 1)
+\end{align*}
+\begin{align*}
+        x_3 &= 1.40 + 0.95  z_3 + \epsilon_3\\
+    x_1 &= 1.10 + 0.40  x_3  + \epsilon_1\\
+    x_2 &= 1.50 + 0.60  x_3  + \epsilon_2\\
+     y   &= 3.00 + 2.00 x_1 + 1.00 x_2 + 15.0 x_3 + u
+\end{align*}
+
+\begin{table}[htbp]
+    \begin{minipage}[t]{0.45\textwidth}
+        \centering
+        \begin{tabular}{ll}
+            \toprule
+            Variables & $\rho$ \\
+            \midrule
+            $x_3$ $z_3$ & 0.481 \\
+            $x_1$ $x_2$ & 0.229 \\
+            \hline
+            $x_2$ $x_3$ & 0.566 \\
+            $x_1$ $x_3$ & 0.413 \\
+            \hline
+            $x_2$ $z_3$ & 0.263 \\
+            $x_1$ $z_3$ & 0.195 \\
+            \bottomrule
+        \end{tabular}
+        \caption{Correlation coefficients}
+        \label{tab:proxy_corr}
+    \end{minipage}%
+    \begin{minipage}[t]{0.45\textwidth}
+        \centering
+        \begin{tabular}{lcccc} % Adjusted column widths
+            \toprule
+            \multicolumn{2}{c}{\multirow{2}{*}{True Values}} & \multicolumn{3}{c}{Regressors} \\
+            \cmidrule(lr){3-5}
+            \multicolumn{2}{c}{} & $x_1$ $x_2$ $x_3$ & $x_1$ $x_2$ $z_3$ & $x_1$ $x_2$ \\
+            \midrule
+            $\beta_0$ & 3.00 & 3.006 & 3.384 & -0.272 \\
+            $\beta_1$ & 2.00 & 1.995 & 5.940 & 6.647 \\
+            $\beta_2$ & 1.00 & 0.995 & 6.988 & 8.028 \\
+            $\beta_3$ & 15.0 & 15.006 & 9.440 & - \\
+            \bottomrule
+        \end{tabular}
+          \caption{Regression coefficients}
+          \label{tab:proxy_data}
+    \end{minipage}
+    \caption{Proxy variable condition is satisfied}
+    
+\end{table}
+
+
+In this case, the proxy condition is not satisfied. From table \autoref{tab:proxy_data} we see, the coefficients are almost same as the true values, when $x_1 , x_2$ and $x_3$ are used as regressors. Coefficients $\beta_1$ and $\beta_2$ are much larger from the true values when only $x_1$ and $x_2$ are regressors (as both $\rho_{x_1 , x_3} , \rho_{x_2 , x_3} > 0$, see \autoref{tab:proxy_corr}{}). When a proxy for $x_3$ i.e. $z_3$ is used (\autoref{tab:proxy_corr} shows that $\rho_{x_3 , z_3} = 0.481$), the coefficients $\beta_1$ and $\beta_2$ are closer to their true value.
+
+
+\subsection{$E[x_3 | z_3] \neq E[x_3 | x_1 ,x_2 , z_3]$ satisfied}
+\begin{align*}
+ x_1 , x_2 , z_3 &\sim \mathcal{U}(-1 , 1)\\
+\epsilon , u &\sim \mathcal{N}(0 , 1) 
+\end{align*}
+\begin{align*}
+    x_3 &= 1.40 + 0.50 x_1 + 0.70 x_2 + 0.95 z_3 + \epsilon\\
+    y   &= 3.00 + 2.00 x_1 + 1.00 x_2 + 15.0 x_3 + u
+\end{align*}
+
+\begin{table}[htbp]
+    \begin{minipage}[t]{0.42\textwidth}
+        \centering
+        \begin{tabular}{ll}
+            \toprule
+            Variables & $\rho$ \\
+            \midrule
+            $x_3$ $z_3$ & 0.442 \\
+            $x_1$ $x_2$ & 0.007 \\
+            \hline
+            $x_2$ $x_3$ & 0.323 \\
+            $x_1$ $x_3$ & 0.234 \\
+            \hline
+            $x_2$ $z_3$ & -0.001 \\
+            $x_1$ $z_3$ & -0.000 \\
+            \bottomrule
+        \end{tabular}
+        \caption{Correlation coefficients}
+        \label{tab:no_proxy_corr}
+        
+    \end{minipage}%
+    \hspace{0.0\textwidth}
+    \begin{minipage}[t]{0.42\textwidth}
+        \centering
+        \begin{tabular}{lcccc} % Adjusted column widths
+            \toprule
+            \multicolumn{2}{c}{\multirow{2}{*}{True Values}} & \multicolumn{3}{c}{Regressors} \\
+            \cmidrule(lr){3-5}
+            \multicolumn{2}{c}{} & $x_1$ $x_2$ $x_3$ & $x_1$ $x_2$ $z_3$ & $x_1$ $x_2$ \\
+            \midrule
+            $\beta_0$ & 3.00 & 3.008 & 24.163 & 24.174 \\
+            $\beta_1$ & 2.00 & 1.997 & 9.436 & 9.430 \\
+            $\beta_2$ & 1.00 & 1.001 & 11.364 & 11.356 \\
+            $\beta_3$ & 15.0 & 14.997 & 14.236 & - \\
+            \bottomrule
+        \end{tabular}
+        \caption{Regression coefficients}
+          \label{tab:no_proxy_data}
+        
+    \end{minipage}
+    \caption{Proxy variable condition is not satisfied}
+\end{table}
+
+From table \autoref{tab:no_proxy_data} we see, the coefficients are almost same as the true values, when $x_1 , x_2$ and $x_3$ are used as regressors. When $x_1 \ \ x_2$ are used the $\beta_1$ and $\beta_2$ increase as $\rho_{x_1 , x_3} , \rho_{x_2 , x_3} > 0$ (see \autoref{tab:no_proxy_corr}). When, $x_1 \ \ x_2 \ \ z_3$ as regressors, there is no significant improvement in the coefficients obtained, i.e. using the proxy variable doesn't solve the bias on coefficients $\beta_1$ and $\beta_2$. This is because the proxy condition is not satisfied!
+
+
+    
