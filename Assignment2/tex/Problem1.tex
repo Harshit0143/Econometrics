@@ -1,0 +1,41 @@
+\section*{Problem 1}
+\noindent 
+
+
+
+\begin{enumerate}[label=\alph*)]
+\item 
+\noindent What is meant by Type I and Type II errors in the context of statistical hypothesis testing?\\
+\newline
+In context of Hypothesis Testing, we define a \textbf{Null Hypothesis} $H_1$(which is presumed to be true until the data strongly suggests otherwise) and \textbf{Alternative Hypothesis} $H_1$. While testing, two types of errors are possible.
+\begin{enumerate}[label=\arabic*)]
+\item Type I error: Rejecting the null hypothesis when it is true. 
+\item Type II error: Failing to reject the null hypothesis when it is false. 
+  
+\end{enumerate}
+
+
+
+\item 
+The recommended daily dietary allowance for zinc among males older than $50$ years is $15$ mg/day. The article "Nutrient Intakes and Dietary Patterns of Older Americans: A National Study" reports the following summary data on intake for a sample of males aged $65$ - $74$ years: $n = 115, \overline{x} = 11.3$ and $s = 6.43$. Does this data indicate that average daily zinc intake in the population of all males aged $65$ - $74$ falls bellow the recommended allowance?\\
+\newline
+State the Null Hypothesis and Alternative Hypothesis as,
+\begin{align*}
+H_0: \mu = 15\\
+H_1: \mu < 15
+\end{align*}
+Assuming $H_0$ is true, the population mean $\mu = 15$ and sample has, $n = 115$ , $\overline{x} = 11.3$ , $s = 6.43$. Since $n$ is very large, z-score and t-score will be same (approximately). So we use $s$ as $\sigma$ for the z-score. This is a \textbf{lower-tailed test} and rejection region will be of type $z \leq -z_{\alpha}$.
+\begin{align*}
+z &= \frac{\bar{x}- \mu}{\sigma/\sqrt{n}}\\
+&= \frac{11.3 - 15}{6.43 / \sqrt{115}}\\
+&= -6.1707
+\end{align*}
+In \textbf{one-tailed test} for, $\alpha = 0.05$,  rejection region is $z \leq  -1.65$ and for $\alpha = 0.01$, rejection region is $z \leq -2.33$. In both cases, the \textbf{Test Statistic} falls in the \textbf{Rejection Region}. so we can reject $H_0$.
+
+\textbf{Conclusion}: The average daily zinc intake in the population of all males aged 65 - 74 falls bellow the recommended allowance.
+
+
+
+
+
+\end{enumerate}

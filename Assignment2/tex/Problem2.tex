@@ -1,0 +1,56 @@
+\section*{Problem 2}
+
+\noindent 
+Have you ever been frustrated because you could not get a container of some sort to release the last bit of its contents? The article "Shake, Rattle and Squeeze: How Much Is Left In That Container?" (Consumer Reports, May $2009: 8$) reported on an investigation of this issue for various consumer products. Suppose five $6$ oz tubes of toothpaste of a particular brand are randomly selected and squeezed until no more toothpaste will come out. Then each tube is cut open and the amount remaining is weighted, resulting in the following data (consistent with what the cited article reported): $0.53, 0.65, 0.46, 0.50, 0.37$. Does it appear that the true average amount
+left is less than $10$\% of the advertised net contents?
+
+\begin{enumerate}
+
+\item
+Check the validity of any assumptions necessary for testing the appropriate hypothesis.\\
+\newline
+The population here refers to the weight of toothpaste in tubes. The sample size is very small, so we can't estimate the population variance from the sample. Consequently,  $\frac{x - \mu}{s/\sqrt{x}}$ need not follow $\mathcal{N}(0,1)$ distribution so we can't use the $z$-test. In order to use the $t$-test, we assume that the population is Normally distributed (this is reasonable as "defects" that the amount is much larger or smaller than the mean should be very few) and that sampling is done independently. 
+\item
+Carry out a test of the appropriate hypothesis using a significance level of $0.05$. Would your conclusion change if a significance level of $0.01$ had been used?\\
+\newline
+We convert the data into \% age of $6$ oz 
+
+\begin{align*}
+&\frac{100 \times 0.53}{6} , \frac{100 \times 0.65}{6} , \frac{100 \times 0.46}{6} , \frac{100 \times 50}{6} , \frac{100 \times 37}{6}\\
+&= 8.833 , 10.833 , 7.667 , 8.333 , 6.167
+\end{align*}
+So we have 
+\begin{align*}
+\bar{x} &= \frac{\sum_{i = 1}^{n} x_i}{n} = \frac{8.833 + 10.833 + 7.667 + 8.333 +  6.167}{5}
+        = 8.367\\
+s^2 &= \frac{\sum_{i = 1}^{n} (x_i - \bar{x})^2}{n - 1}\\
+ &= \frac{(8.833 - 8.367)^2 + (10.833 8.367)^2 + (7.667 - 8.367)^2 + (8.333- 8.367)^2+  (6.167- 8.367)^2}{4}\\
+&= 2.90833\\
+\implies s &= 1.7054
+\end{align*}
+
+Define the sample as, "Weight of contents of tube, as \% age of $6$ oz", denote the population mean by $\mu$.
+\begin{align*}
+H_0 : \mu = 10\\
+H_1 : \mu < 10
+\end{align*}
+\begin{align*}
+t = \frac{\bar{x} - \mu}{s/\sqrt{n}}
+= \frac{8.367 - 10}{1.7054/\sqrt{5}}
+=-2.141
+\end{align*}
+
+This is a \textbf{lower-tailed test} and rejection region will be of type $t \leq -t_{\alpha , n - 1}$.
+We look at \textbf{t-table} with $4$ Degrees of Freedom. In \textbf{one-tailed test} $t_{0.95} = 2.132$ and $t_{0.99} = 3.747$.
+\begin{enumerate}
+\item 
+For $\alpha = 0.05$, rejection region is $t \leq -2.132$. The \textbf{Test Statistic} falls in the rejection region so we reject $H_0$.\\
+\textbf{Conclusion}: The true average amount left  in is less than $10$\% of the advertised net contents.
+
+\item 
+For $\alpha = 0.01$ rejection region is $t \leq -3.747$. The \textbf{Test Statistic} doesn't fall in the rejection region so we fail to reject $H_0$.\\
+\textbf{Conclusion}: The true average amount left  in is NOT less than $10$\% of the advertised net contents.
+\end{enumerate}
+
+\end{enumerate}
+
